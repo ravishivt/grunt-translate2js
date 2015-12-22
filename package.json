@@ -1,5 +1,5 @@
 {
-  "name": "grunt-html2js",
+  "name": "grunt-translate2js”,
   "description": "Compiles AngularJS templates to JavaScript",
   "version": "0.3.5",
   "homepage": "https://github.com/karlgoldstein/grunt-html2js",
