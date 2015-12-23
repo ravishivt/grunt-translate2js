@@ -73,8 +73,9 @@ module.exports = function(grunt) {
 
     // trim leading whitespace
     content = content.replace(/(^\s*)/g, '');
+    return content;
 
-    return escapeContent(content, options.quoteChar, options.indentString);
+    //return escapeContent(content, options.quoteChar, options.indentString);
   };
 
   // compile a template to an angular module
@@ -89,11 +90,11 @@ module.exports = function(grunt) {
 
     if (withModule) {
       compiled += 'angular.module(' + quoteChar + moduleName +
-        quoteChar + ', []).run([' + quoteChar + '$templateCache' + quoteChar + ', function($templateCache) {\n' + strict;
+        quoteChar + ', []).run([' + quoteChar + '$translationCache' + quoteChar + ', function($translationCache) {\n' + strict;
     }
 
-    compiled += indentString + '$templateCache.put(' + quoteChar + moduleName + quoteChar +
-      ',\n' + doubleIndent  + quoteChar +  content + quoteChar + ');';
+    compiled += indentString + '$translationCache.put(' + quoteChar + "/" + moduleName + quoteChar +
+      ',\n' + doubleIndent +  content + ');';
 
     if (withModule) {
       compiled += '\n}]);\n';
@@ -126,7 +127,7 @@ module.exports = function(grunt) {
     return compiled;
   };
 
-  grunt.registerMultiTask('html2js', 'Compiles Angular-JS templates to JavaScript.', function() {
+  grunt.registerMultiTask('translate2js', 'Compiles Angular-JS templates to JavaScript.', function() {
 
     var options = this.options({
       base: 'src',
